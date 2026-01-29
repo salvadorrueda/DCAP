@@ -2,18 +2,21 @@
 
 Aquest script configura l'entorn bàsic per poder executar contenidors Docker.
 
-## Passos previs
+## Passos previs (Molt Important)
 
-1. **Arquitectura**: Assegura't que el teu Mikrotik té arquitectura ARM, ARM64 o x86 i corre RouterOS v7.
-2. **Espai**: Docker requereix espai de disc (millor si tens un USB o disc extern muntat).
+1. **Instal·lació del Paquet `container`**:
+   - Ves a la web de Mikrotik i baixa els "Extra packages" per a la teva arquitectura (ex: x86, ARM).
+   - Descomprimeix el fitxer i cerca `container-x.y.npk`.
+   - Arrossega i deixa anar aquest fitxer a la secció **Files** del teu WinBox.
+   - Reinicia el router (`/system reboot`) per instal·lar el paquet.
+2. **Habilitar el mode Container**:
+   - Un cop reiniciat, obre un Terminal i executa: `/system device-mode update container=yes`.
+   - **Confirmació física**: En un interval de 5 minuts, has de fer un "cold boot" (apagar i encendre el router o prémer el botó reset) per confirmar el canvi.
 
-## Com fer-ho servir
+## Com fer-ho servir el script
 
-1. Puja el fitxer `enable_docker.rsc` al teu Mikrotik.
-2. Executa'l des del terminal: `/import enable_docker.rsc`
-3. **IMPORTANT**: Per seguretat, Mikrotik demana una confirmació física o un reinici especial per activar el "container mode":
-   - Després d'executar l'ordre d'activació (inclosa al script), hauràs de prémer el botó "Reset" del router o apagar i encendre en un interval de temps si no hi ha botó.
-   - Revisa el log: `/log print` per veure les instruccions exactes que dóna el router.
+1. Un cop el paquet estigui instal·lat i el mode habitat, puja el fitxer `enable_docker.rsc`.
+2. Executa'l: `/import enable_docker.rsc`
 
 ## Configuració inclosa
 - Bridge: `docker-bridge` (IP 172.17.0.1/24)
