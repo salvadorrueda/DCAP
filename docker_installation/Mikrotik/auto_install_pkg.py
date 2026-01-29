@@ -6,12 +6,13 @@ import urllib.request
 import zipfile
 import shutil
 
+
 def download_and_install_pkg():
     print("--- Mikrotik Container Package Auto-Installer ---")
     
     # Paràmetres per defecte o entrada de l'usuari
     ip = input("Entra la IP del Mikrotik (ex: 192.168.1.186): ")
-    versio = input("Entra la versió de RouterOS (ex: 7.12.1): ")
+    versio = input("Entra la versió de RouterOS (ex: 7.20.7): ")
     arch = "x86" # Per defecte segons la petició
     
     zip_filename = f"all_packages-{arch}-{versio}.zip"
